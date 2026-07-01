@@ -1,49 +1,31 @@
-class Product {
-    private String productId;
-    private String productName;
-    private double price;
-    private int stockQuantity;
+class BankAccount {
+    private String accountNumber;
+    private String accountHolderName;
+    private double balance;
 
-    public Product(String productId, String productName, double price, int stockQuantity) {
-        this.productId = productId;
-        this.productName = productName;
-        this.price = (price < 0) ? 0.0 : price;
-        this.stockQuantity = (stockQuantity < 0) ? 0 : stockQuantity;
+    public BankAccount(String accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
     }
 
-    public String getProductId() {
-        return productId;
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid Deposit Amount");
+            return;
+        }
+        balance += amount;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient Funds");
+            return;
+        }
+        balance -= amount;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = (price < 0) ? 0.0 : price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = (stockQuantity < 0) ? 0 : stockQuantity;
-    }
-
-    public void applyDiscount(double percentage) {
-        price = price - (price * percentage / 100);
+    public double getBalance() {
+        return balance;
     }
 }

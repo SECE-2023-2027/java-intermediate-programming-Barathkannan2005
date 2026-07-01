@@ -1,31 +1,22 @@
-class BankAccount {
-    private String accountNumber;
-    private String accountHolderName;
-    private double balance;
+class Student {
+    private String name;
+    private int[] marks;
 
-    public BankAccount(String accountNumber, String accountHolderName, double balance) {
-        this.accountNumber = accountNumber;
-        this.accountHolderName = accountHolderName;
-        this.balance = balance;
+    public Student(String name, int[] marks) {
+        this.name = name;
+        this.marks = marks;
     }
 
-    public void deposit(double amount) {
-        if (amount <= 0) {
-            System.out.println("Invalid Deposit Amount");
-            return;
+    public double calculateAverage() {
+        if (marks == null || marks.length == 0) {
+            return 0.0;
         }
-        balance += amount;
-    }
 
-    public void withdraw(double amount) {
-        if (amount > balance) {
-            System.out.println("Insufficient Funds");
-            return;
+        int sum = 0;
+        for (int mark : marks) {
+            sum += mark;
         }
-        balance -= amount;
-    }
 
-    public double getBalance() {
-        return balance;
+        return (double) sum / marks.length;
     }
 }
